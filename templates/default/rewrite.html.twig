@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}View Post {% endblock %}
+
+{% block body %}
+    <div class="form type">
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_widget(form) }}
+        <div class="form-group row">
+            <div class="col-sm-10 col-sm-2">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+        <a href="{{ path("view_post", {'id':id}) }}" class="btn btn-primary">Вернуться к просмотру</a>
+
+
+    </div>
+{% endblock %}

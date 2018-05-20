@@ -1,0 +1,29 @@
+body{
+    background-color: white;
+    max-width: 1366px;
+
+}
+main{
+    margin-top:59px;
+}
+.textarea {
+    height: 400px;
+    width: 1100px;
+}
+
+.viewtext {
+    width: 1100px;
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.td_r {
+    text-align: right;
+}
+td {
+    width:500px;
+}
+
+.td_l {
+    text-align: left;
+}

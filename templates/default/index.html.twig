@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+   {% for posts in post %}
+
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne{{ posts.id }}">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne{{ posts.id }}"
+                        aria-expanded="true" aria-controls="collapseOne">
+                    <table >
+                        <tr>
+                            <td class="td_l">{{ posts.title }}</td>
+                            <td class="td_r">{{ posts.date|date("m/d/Y") }}</td>
+                        </tr>
+                    </table>
+
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne{{ posts.id }}" class="collapse show" aria-labelledby="headingOne"
+             data-parent="#accordion">
+            <div class="card-body">
+                <div class="viewtext">
+                    {{ posts.text }} <br><br>
+                </div>
+
+                <a href="{{ path('view_post',{'id': posts.id}) }}" class="btn btn-primary">Читать дальше</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    {% endfor %}
+    {% endblock %}
