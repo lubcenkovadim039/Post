@@ -19,6 +19,11 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+
+    /**
+     * @param $date
+     * @return array
+     */
     public function findLastPost($date): array
     {
         $entityManager = $this->getEntityManager();
