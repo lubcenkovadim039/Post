@@ -5,7 +5,8 @@
 {% block body %}
     <h3>{{ post.title }}</h3>
     <p>{{ post.date|date("m/d/Y") }}</p>
-    <p>{{ post.text }}</p><br>
+    <p>{{ post.text|nl2br}}</p>
+    <br><br>
     <a href="{{ path("rewrite_post",{id:post.id}) }}" class="btn btn-primary">Редактировать</a>
     <a href="{{ path("index") }}" class="btn btn-primary">Вернуться на главную</a>
 

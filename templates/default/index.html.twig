@@ -28,7 +28,10 @@
 
             <div class="card-body">
                 <div class="viewtext">
-                    {{ posts.text }} <br><br>
+                    {% autoescape %}
+                        {{ posts.text|nl2br}} {# var won't be escaped #}
+                    {% endautoescape %}
+
                 </div>
 
                 <a href="{{ path('view_post',{'id': posts.id}) }}" class="btn btn-primary">Читать дальше</a>

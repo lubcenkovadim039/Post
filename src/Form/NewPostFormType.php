@@ -14,7 +14,7 @@ class NewPostFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class)
+            ->add('title', TextType::class, array('attr' => ['class' => 'form-group']))
             ->add('text', TextareaType::class, array('attr' => ['class' => 'textarea']))
         ;
     }

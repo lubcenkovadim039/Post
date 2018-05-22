@@ -70,9 +70,6 @@ class PostRepository extends ServiceEntityRepository
     }
     */
 
-    /**
-     * @param $date
-     * @return array
-     */
+   
 
 }

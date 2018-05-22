@@ -12,26 +12,28 @@
             <div class="card-header" id="headingOne{{ posts.id }}">
                 <h5 class="mb-0">
 
-                        <table class="table ">
-                            <tr>
-                                <button class="btn btn-link" >
+                    <table class="table ">
+                        <tr>
+                            <button class="btn btn-link">
                                 <td class="td_l">{{ posts.title }}</td>
-                                </button>
-                                <td class="td_r">{{ posts.date|date("m/d/Y") }}</td>
-                            </tr>
-                        </table>
+                            </button>
+                            <td class="td_r">{{ posts.date|date("m/d/Y") }}</td>
+                        </tr>
+                    </table>
 
                 </h5>
             </div>
 
 
-                <div class="card-body">
-                    <div class="viewtext">
-                        {{ posts.text }}  <br><br>
-                    </div>
-
-                    <a href="{{ path('view_post',{'id': posts.id}) }}" class="btn btn-primary">Читать дальше</a>
+            <div class="card-body">
+                <div class="viewtext">
+                    {% autoescape %}
+                        {{ posts.text|raw }} {# var won't be escaped #}
+                    {% endautoescape %}
                 </div>
+
+                <a href="{{ path('view_post',{'id': posts.id}) }}" class="btn btn-primary">Читать дальше</a>
+            </div>
 
         </div>
 
