@@ -6,7 +6,7 @@ body{
 main{
     margin-top:59px;
 }
-.textarea {
+#new_post_form_text {
     height: 400px;
     width: 1100px;
 }
@@ -27,3 +27,4 @@ td {
 .td_l {
     text-align: left;
 }
+

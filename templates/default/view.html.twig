@@ -3,11 +3,46 @@
 {% block title %}View Post {% endblock %}
 
 {% block body %}
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.date|date("m/d/Y") }}</p>
+  <div>  <h3>{{ post.title }}</h3>
+    <p>{{ post.date|date("Y-m-d H:i:s") }}</p>
     <p>{{ post.text|nl2br}}</p>
     <br><br>
     <a href="{{ path("rewrite_post",{id:post.id}) }}" class="btn btn-primary">Редактировать</a>
     <a href="{{ path("index") }}" class="btn btn-primary">Вернуться на главную</a>
+  </div>
 
+<div>
+    {% for comment in comments %}
+        <table class="table table-striped">
+            <tr>
+                <td class="td_l">{{ comment.nickName }}</td>
+                <td class="td_r">{{ comment.datePublic|date("Y-m-d H:i:s") }}</td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    {{ comment.text|nl2br }}
+
+                </td>
+            </tr>
+
+        </table>
+        <br><br>
+
+    {% endfor %}
+    <br>
+    <div class="form type">
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate',
+        'class': 'form-group'
+        }}) }}
+        {{ form_widget(form) }}
+        <div class="form-group row">
+            <div class="col-sm-10 col-sm-2">
+                <button type="submit" class="btn btn-primary">Добавить коментарий</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+</div>
 {% endblock %}

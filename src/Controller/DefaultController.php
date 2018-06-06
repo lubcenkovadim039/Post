@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\CommentFormType;
 use App\Form\NewPostFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,12 +20,14 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        $date = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
         $post = $this->getDoctrine()
             ->getRepository(Post::class)
-            ->findLastPost($date);
+            ->findByExampleField($date);
         
-
+       
+            
+            
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'post' => $post,
@@ -65,12 +69,35 @@ class DefaultController extends Controller
     /**
      * @Route("/viewpost/{id}", name="view_post")
      */
-    public function viewPost(Post $post)
+    public function viewPost(Post $post, Request $request, EntityManagerInterface $em)
     {
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findByExampleField($post->getId());
+
+        $comment = new Comment();
+        $comment->setPost($post);
+
+
+        $form = $this->createForm(CommentFormType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $em->persist($comment);
+            $em->flush();
+            
+            return $this->redirectToRoute("view_post",[
+                'id' => $post->getId(),
+            ]);
+        }
 
 
         return $this->render('default/view.html.twig', [
             'post' => $post,
+            'comments' => $comments,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -17,7 +17,7 @@
                             <button class="btn btn-link">
                                 <td class="td_l">{{ posts.title }}</td>
                             </button>
-                            <td class="td_r">{{ posts.date|date("m/d/Y") }}</td>
+                            <td class="td_r">{{ posts.date|date("Y-m-d H:i:s") }}</td>
                         </tr>
                     </table>
 
@@ -33,6 +33,7 @@
                 </div>
 
                 <a href="{{ path('view_post',{'id': posts.id}) }}" class="btn btn-primary">Читать дальше</a>
+                <span><i>Коментaриев</i>  <b>{{ posts.comment.count }}</b></span>
             </div>
 
         </div>
